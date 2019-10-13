@@ -5,7 +5,7 @@ import NotesBoard from './components/NotesBoard';
 
 const AppContainer = styled.div({
   padding: 40,
-  margin: '0 auto',
+  margin: "0 auto",
   minWidth: 500,
   maxWidth: 1280,
 });
