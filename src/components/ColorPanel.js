@@ -4,6 +4,7 @@ import React from "react";
 //TODO move to buttons
 const ColorButton = styled.button(
   {
+    boxSizing: "border-box",
     width: 20,
     height: 20,
     borderRadius: "50%",

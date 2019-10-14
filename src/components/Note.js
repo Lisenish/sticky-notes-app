@@ -40,21 +40,26 @@ const NoteContainer = styled.div(
       textAlign: "right"
     }
   },
-  ({ color }) => ({
-    backgroundColor: color || "bisque"
+  ({ color, isPreview }) => ({
+    backgroundColor: color || "bisque",
+    opacity: isPreview && 0.5
   })
 );
 
-const Note = ({ note, className }) => {
-  const { text, date, authorId, color } = note;
+const Note = ({ note, author, className }) => {
+  const { text, date, color } = note;
 
   return (
-    <NoteContainer color={color} className={className}>
+    <NoteContainer
+      color={color}
+      isPreview={note.isPreview}
+      className={className}
+    >
       <div className="Note__body">{text}</div>
       <div className="Note__footer">
         <div className="Note__author">
-          <Gravatar email={authorId} />
-          <span className="Note__author-name">Dmitry Ivanov</span>
+          <Gravatar email={author.email} />
+          <span className="Note__author-name">{author.name}</span>
         </div>
         <div className="Note__date">{date.toLocaleString()}</div>
       </div>
@@ -66,6 +71,10 @@ Note.propTypes = {
   note: PropTypes.shape({
     text: PropTypes.string,
     date: PropTypes.instanceOf(Date)
+  }),
+  author: PropTypes.shape({
+    email: PropTypes.string,
+    name: PropTypes.string
   })
 };
 
